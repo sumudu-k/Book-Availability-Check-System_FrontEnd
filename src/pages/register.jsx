@@ -33,7 +33,7 @@ export function RegisterPage() {
     }
 
     axios
-      .post("http://localhost:3000/user/register", {
+      .post(import.meta.env.VITE_BACKEND_URL + "user/register", {
         firstname: firstname,
         lastname: lastname,
         email: email,

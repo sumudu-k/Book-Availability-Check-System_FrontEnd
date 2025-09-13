@@ -13,7 +13,7 @@ export function SearchResults() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/books/view/" + bookName)
+      .get(import.meta.env.VITE_BACKEND_URL + "books/view/" + bookName)
       .then((res) => {
         setBooks(res.data.bookList || []);
         setLoading("loaded");

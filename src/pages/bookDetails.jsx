@@ -8,7 +8,7 @@ export function BookDetails() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/books/${bookId}`)
+      .get(import.meta.env.VITE_BACKEND_URL + `books/${bookId}`)
       .then((data) => setBook(data));
   }, [bookId]);
 

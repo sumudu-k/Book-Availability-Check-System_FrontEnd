@@ -16,7 +16,7 @@ export function AdminDashboard() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:3000/books/view")
+      .get(import.meta.env.VITE_BACKEND_URL + "books/view")
       .then((result) => {
         setBooks(result.data.list);
       })
@@ -57,7 +57,7 @@ export function AdminDashboard() {
   function deleteBook(book) {
     const bookId = book.bookId;
     axios
-      .delete("http://localhost:3000/books/" + bookId, {
+      .delete(import.meta.env.VITE_BACKEND_URL + "books/" + bookId, {
         headers: {
           Authorization: "Bearer " + token,
         },

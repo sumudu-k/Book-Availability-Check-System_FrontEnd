@@ -44,7 +44,7 @@ export function AddBook() {
     }
 
     axios
-      .post("http://localhost:3000/books/add", newBook, {
+      .post(import.meta.env.VITE_BACKEND_URL + "books/add", newBook, {
         headers: { Authorization: "Bearer " + token },
       })
       .then((result) => {

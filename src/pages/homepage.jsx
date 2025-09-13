@@ -15,10 +15,12 @@ export function HomePage() {
       return;
     } else {
       if (loading == "loading") {
-        axios.get("http://localhost:3000/books/view").then((res) => {
-          setBooks(res.data.list);
-          setLoading("loaded");
-        });
+        axios
+          .get(import.meta.env.VITE_BACKEND_URL + "books/view")
+          .then((res) => {
+            setBooks(res.data.list);
+            setLoading("loaded");
+          });
       }
     }
   }, []);

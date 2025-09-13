@@ -51,7 +51,7 @@ export function EditBook() {
       return;
     }
     axios
-      .put("http://localhost:3000/books/" + bookId, updateData, {
+      .put(import.meta.env.VITE_BACKEND_URL + "books/" + bookId, updateData, {
         headers: {
           Authorization: "Bearer " + token,
         },

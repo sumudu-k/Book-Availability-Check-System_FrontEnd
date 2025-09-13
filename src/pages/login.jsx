@@ -11,7 +11,10 @@ export function Loginpage() {
 
   function loginFunction() {
     axios
-      .post("http://localhost:3000/user/login", { email, password })
+      .post(import.meta.env.VITE_BACKEND_URL + "user/login", {
+        email,
+        password,
+      })
       .then((res) => {
         if (!res.data.user) {
           toast.error("Login failed");

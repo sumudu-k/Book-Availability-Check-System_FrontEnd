@@ -41,11 +41,15 @@ export function AdminRegister() {
     }
 
     try {
-      await axios.post("http://localhost:3000/user/register", adminDetails, {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
+      await axios.post(
+        import.meta.env.VITE_BACKEND_URL + "user/register",
+        adminDetails,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
 
       toast.success("Admin registered successfully");
       navigate("/myadmin/dashboard");
