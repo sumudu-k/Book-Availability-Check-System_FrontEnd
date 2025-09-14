@@ -11,6 +11,10 @@ export function AdminLoginpage() {
   const [password, setPassword] = useState(location?.state?.password || "");
 
   function loginFunction() {
+    if (!email || !password) {
+      toast.error("Please fill all the fields");
+      return;
+    }
     axios
       .post(import.meta.env.VITE_BACKEND_URL + "user/login", {
         email,
@@ -22,18 +26,21 @@ export function AdminLoginpage() {
           return;
         }
 
-        localStorage.setItem("token", res.data.token);
-
-        if (res.data.user.type == "admin") {
-          toast.success("Login Successfull");
-          navigate("/myadmin/dashboard");
-        } else {
-          toast.error("Unauthorized user");
-          return;
+        if (res.data.user.type === "admin") {
+          localStorage.setItem("token", res.data.token);
+          toast.success("Login Successful");
+          window.location.href = "../myadmin/dashboard";
         }
+      })
+      .catch((err) => {
+        if (err.response?.data?.message) {
+          toast.error(err.response.data.message);
+        } else {
+          toast.error("Something went wrong");
+        }
+        console.error("Login error:", err.response?.data || err.message);
       });
   }
-
   useEffect(() => {
     if (location?.state?.email && location?.state?.password) {
       loginFunction();
