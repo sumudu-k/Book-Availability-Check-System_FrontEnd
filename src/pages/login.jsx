@@ -10,6 +10,10 @@ export function Loginpage() {
   const [password, setPassword] = useState(location?.state?.password || "");
 
   function loginFunction() {
+    if (!email || !password) {
+      toast.error("Please fill all the fields");
+      return;
+    }
     axios
       .post(import.meta.env.VITE_BACKEND_URL + "user/login", {
         email,
@@ -30,8 +34,13 @@ export function Loginpage() {
         toast.success("Login Successful");
         window.location.href = "../";
       })
-      .catch(() => {
-        toast.error("Something went wrong");
+      .catch((err) => {
+        if (err.response?.data?.message) {
+          toast.error(err.response.data.message);
+        } else {
+          toast.error("Something went wrong");
+        }
+        console.error("Login error:", err.response?.data || err.message);
       });
   }
 
