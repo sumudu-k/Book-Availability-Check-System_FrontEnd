@@ -76,7 +76,7 @@ export function AdminDashboard() {
   }
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen flex flex-col">
+    <div className="bg-gray-900 text-white min-h-screen flex flex-col overflow-x-hidden">
       {/* Header Section  */}
       <header className="bg-gray-800 p-4 shadow-md">
         <h1 className="text-lg md:text-2xl font-bold text-center">
@@ -115,138 +115,144 @@ export function AdminDashboard() {
                 Unavailable Books: {getUnavailableBookCount()}
               </h2>
             </div>
-            {/* Table */}
-            <table className="w-full text-left border-collapse border border-gray-700">
-              <thead className="bg-gray-800">
-                <tr>
-                  <th className="border border-gray-700 px-4 py-2">Book ID</th>
-                  <th className="border border-gray-700 px-4 py-2">
-                    Book Name
-                  </th>
-                  <th className="border border-gray-700 px-4 py-2">
-                    Available
-                  </th>
-                  <th className="border border-gray-700 px-4 py-2">Pages</th>
-                  <th className="border border-gray-700 px-4 py-2">Price</th>
-                  <th className="border border-gray-700 px-4 py-2">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {books.map((book) => (
-                  <tr
-                    key={book.bookId}
-                    className="hover:bg-gray-800 border border-gray-700 ">
-                    <td className="border border-gray-700 px-4 py-2">
-                      {book.bookId}
-                    </td>
-                    <td
-                      className="border border-gray-700 px-4 py-2 text-blue-400 cursor-pointer"
-                      onMouseEnter={() => popup(book)}
-                      onMouseLeave={closePopup}>
-                      {book.bookName}
-                    </td>
-                    {book.available == true ? (
-                      <td className="border border-gray-700 px-4 py-2 text-green-500 font-semibold">
-                        Yes
+            <div className="overflow-x-auto">
+              {/* Table */}
+              <table className="w-full text-left border-collapse border border-gray-700">
+                <thead className="bg-gray-800">
+                  <tr>
+                    <th className="border border-gray-700 px-4 py-2">
+                      Book ID
+                    </th>
+                    <th className="border border-gray-700 px-4 py-2">
+                      Book Name
+                    </th>
+                    <th className="border border-gray-700 px-4 py-2">
+                      Available
+                    </th>
+                    <th className="border border-gray-700 px-4 py-2">Pages</th>
+                    <th className="border border-gray-700 px-4 py-2">Price</th>
+                    <th className="border border-gray-700 px-4 py-2">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {books.map((book) => (
+                    <tr
+                      key={book.bookId}
+                      className="hover:bg-gray-800 border border-gray-700 ">
+                      <td className="border border-gray-700 px-4 py-2">
+                        {book.bookId}
                       </td>
-                    ) : (
-                      <td className="border border-gray-700 px-4 py-2 text-red-500 font-semibold">
-                        No
+                      <td
+                        className="border border-gray-700 px-4 py-2 text-blue-400 cursor-pointer"
+                        onMouseEnter={() => popup(book)}
+                        onMouseLeave={closePopup}>
+                        {book.bookName}
                       </td>
-                    )}
+                      {book.available == true ? (
+                        <td className="border border-gray-700 px-4 py-2 text-green-500 font-semibold">
+                          Yes
+                        </td>
+                      ) : (
+                        <td className="border border-gray-700 px-4 py-2 text-red-500 font-semibold">
+                          No
+                        </td>
+                      )}
 
-                    <td className="border border-gray-700 px-4 py-2">
-                      {book.pages}
-                    </td>
-                    <td className="border border-gray-700 px-4 py-2">
-                      {book.price}
-                    </td>
-                    <td className="px-4 py-2 flex space-x-2">
-                      <button
-                        className="hover:scale-105 rounded bg-orange-800 text-white px-3 py-1 font-semibold flex items-center space-x-2 cursor-pointer"
-                        onClick={() => {
-                          navigate("/myadmin/editbook", {
-                            state: {
-                              bookId: book.bookId,
-                              bookName: book.bookName,
-                              description: book.description,
-                              price: book.price,
-                              author: book.author,
-                              pages: book.pages,
-                              available: book.available,
-                            },
-                          });
-                        }}>
-                        <FaEdit className="text-sm md:text-base" />
-                      </button>
-                      <button
-                        className="rounded bg-red-800 opacity-75 text-white px-2 md:px-3 py-1 font-semibold flex items-center space-x-1 cursor-pointer"
-                        onClick={() => {
-                          const overlay = document.createElement("div");
-                          overlay.className =
-                            "fixed inset-0 bg-gray-950 bg-opacity-75 flex items-center justify-center p-4";
-                          overlay.style.zIndex = "9999";
+                      <td className="border border-gray-700 px-4 py-2">
+                        {book.pages}
+                      </td>
+                      <td className="border border-gray-700 px-4 py-2">
+                        {book.price}
+                      </td>
+                      <td className="px-4 py-2 flex space-x-2">
+                        <button
+                          className="hover:scale-105 rounded bg-orange-800 text-white px-3 py-1 font-semibold flex items-center space-x-2 cursor-pointer"
+                          onClick={() => {
+                            navigate("/myadmin/editbook", {
+                              state: {
+                                bookId: book.bookId,
+                                bookName: book.bookName,
+                                description: book.description,
+                                price: book.price,
+                                author: book.author,
+                                pages: book.pages,
+                                available: book.available,
+                              },
+                            });
+                          }}>
+                          <FaEdit className="text-sm md:text-base" />
+                        </button>
+                        <button
+                          className="rounded bg-red-800 opacity-75 text-white px-2 md:px-3 py-1 font-semibold flex items-center space-x-1 cursor-pointer"
+                          onClick={() => {
+                            const overlay = document.createElement("div");
+                            overlay.className =
+                              "fixed inset-0 bg-gray-950 bg-opacity-75 flex items-center justify-center p-4";
+                            overlay.style.zIndex = "9999";
 
-                          const modal = document.createElement("div");
-                          modal.className =
-                            "bg-gray-800 text-white rounded p-4 md:p-6 shadow-lg max-w-xs md:max-w-sm w-full mx-4";
-                          modal.innerHTML = `
+                            const modal = document.createElement("div");
+                            modal.className =
+                              "bg-gray-800 text-white rounded p-4 md:p-6 shadow-lg max-w-xs md:max-w-sm w-full mx-4";
+                            modal.innerHTML = `
                             <div class="mb-4">
                               <p class="text-base md:text-lg font-bold">Delete book</p>
                               <p class="text-xs md:text-sm mt-2">Are you sure you want to delete "<span class='font-semibold'></span>"?</p>
                             </div>
                             `;
-                          const nameSpan = modal.querySelector("span");
-                          if (nameSpan) nameSpan.textContent = book.bookName;
+                            const nameSpan = modal.querySelector("span");
+                            if (nameSpan) nameSpan.textContent = book.bookName;
 
-                          const btnContainer = document.createElement("div");
-                          btnContainer.className =
-                            "flex flex-col md:flex-row justify-end space-y-2 md:space-y-0 md:space-x-3";
+                            const btnContainer = document.createElement("div");
+                            btnContainer.className =
+                              "flex flex-col md:flex-row justify-end space-y-2 md:space-y-0 md:space-x-3";
 
-                          const cancelBtn = document.createElement("button");
-                          cancelBtn.className =
-                            "bg-gray-600 hover:bg-gray-700 text-white px-3 py-2 md:py-1 rounded text-sm md:text-base";
-                          cancelBtn.textContent = "Cancel";
+                            const cancelBtn = document.createElement("button");
+                            cancelBtn.className =
+                              "bg-gray-600 hover:bg-gray-700 text-white px-3 py-2 md:py-1 rounded text-sm md:text-base";
+                            cancelBtn.textContent = "Cancel";
 
-                          const confirmBtn = document.createElement("button");
-                          confirmBtn.className =
-                            "bg-red-600 hover:bg-red-700 text-white px-3 py-2 md:py-1 rounded text-sm md:text-base";
-                          confirmBtn.textContent = "Delete";
+                            const confirmBtn = document.createElement("button");
+                            confirmBtn.className =
+                              "bg-red-600 hover:bg-red-700 text-white px-3 py-2 md:py-1 rounded text-sm md:text-base";
+                            confirmBtn.textContent = "Delete";
 
-                          btnContainer.appendChild(cancelBtn);
-                          btnContainer.appendChild(confirmBtn);
-                          modal.appendChild(btnContainer);
-                          overlay.appendChild(modal);
-                          document.body.appendChild(overlay);
+                            btnContainer.appendChild(cancelBtn);
+                            btnContainer.appendChild(confirmBtn);
+                            modal.appendChild(btnContainer);
+                            overlay.appendChild(modal);
+                            document.body.appendChild(overlay);
 
-                          const removeModal = () => {
-                            if (overlay && overlay.parentNode)
-                              overlay.parentNode.removeChild(overlay);
-                            window.removeEventListener("keydown", onKey);
-                          };
+                            const removeModal = () => {
+                              if (overlay && overlay.parentNode)
+                                overlay.parentNode.removeChild(overlay);
+                              window.removeEventListener("keydown", onKey);
+                            };
 
-                          const onKey = (e) => {
-                            if (e.key === "Escape") removeModal();
-                          };
-                          window.addEventListener("keydown", onKey);
-                          overlay.addEventListener("click", (e) => {
-                            if (e.target === overlay) removeModal();
-                          });
+                            const onKey = (e) => {
+                              if (e.key === "Escape") removeModal();
+                            };
+                            window.addEventListener("keydown", onKey);
+                            overlay.addEventListener("click", (e) => {
+                              if (e.target === overlay) removeModal();
+                            });
 
-                          cancelBtn.addEventListener("click", removeModal);
+                            cancelBtn.addEventListener("click", removeModal);
 
-                          confirmBtn.addEventListener("click", () => {
-                            deleteBook(book);
-                            removeModal();
-                          });
-                        }}>
-                        <FaTrash className="text-sm md:text-base" />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                            confirmBtn.addEventListener("click", () => {
+                              deleteBook(book);
+                              removeModal();
+                            });
+                          }}>
+                          <FaTrash className="text-sm md:text-base" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
 
