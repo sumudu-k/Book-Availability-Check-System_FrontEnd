@@ -150,12 +150,12 @@ This project is licensed under the MIT License.
 ## 🟡 Screenshots
 
 <p float="left">
-  <img src="https://raw.githubusercontent.com/sumudu-k/Book-Availability-Check-System_BackEnd/main/Screenshots/cover1.png" width="48%" />
-  <img src="https://raw.githubusercontent.com/sumudu-k/Book-Availability-Check-System_BackEnd/main/Screenshots/cover2.png" width="48%" />
+  <img src="https://raw.githubusercontent.com/sumudu-k/Book-Availability-Check-System_FrontEnd/main/Screenshots/cover1.png" width="48%" />
+  <img src="https://raw.githubusercontent.com/sumudu-k/Book-Availability-Check-System_FrontEnd/main/Screenshots/cover2.png" width="48%" />
 </p>
 <p float="left">
-  <img src="https://raw.githubusercontent.com/sumudu-k/Book-Availability-Check-System_BackEnd/main/Screenshots/cover3.png" width="48%" />
-  <img src="https://raw.githubusercontent.com/sumudu-k/Book-Availability-Check-System_BackEnd/main/Screenshots/cover4.png" width="48%" />
+  <img src="https://raw.githubusercontent.com/sumudu-k/Book-Availability-Check-System_FrontEnd/main/Screenshots/cover3.png" width="48%" />
+  <img src="https://raw.githubusercontent.com/sumudu-k/Book-Availability-Check-System_FrontEnd/main/Screenshots/cover4.png" width="48%" />
 </p>
 
 ---
